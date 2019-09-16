@@ -37,8 +37,8 @@ public class DoOps {
           randomChoiceOf(operations)
               .accept(randomChoiceOf(regions));
         }
-        System.out.format("Finished batch %d (puts %d, gets %d)%n", ++batch, puts, gets);
-        Thread.sleep(RANDOM.nextInt(MAX_SLEEP_MILLIS));
+//        System.out.format("Finished batch %d (puts %d, gets %d)%n", ++batch, puts, gets);
+//        Thread.sleep(RANDOM.nextInt(MAX_SLEEP_MILLIS));
       }
     }
   }

@@ -22,6 +22,8 @@ public class DoOps {
   private static final String PARTITIONED_REGION_NAME = "my-partitioned-region";
   private static final int MAX_SLEEP_MILLIS = 1000;
   private static final int MAX_KEY = 100_000;
+  private static int puts;
+  private static int gets;
 
   public static void main(String[] args) throws InterruptedException {
     List<Consumer<Region<Integer,Integer>>> operations = operations();
@@ -31,11 +33,11 @@ public class DoOps {
       int batch = 0;
 
       while (true) {
-        System.out.println("Starting batch " + ++batch);
         for (int i = 0; i < 1000; i++) {
           randomChoiceOf(operations)
               .accept(randomChoiceOf(regions));
         }
+        System.out.format("Finished batch %d (puts %d, gets %d)%n", ++batch, puts, gets);
         Thread.sleep(RANDOM.nextInt(MAX_SLEEP_MILLIS));
       }
     }
@@ -49,10 +51,12 @@ public class DoOps {
 
   private static void get(Region<Integer, Integer> region) {
     region.get(RANDOM.nextInt(MAX_KEY * 2));
+    gets++;
   }
 
   private static void put(Region<Integer, Integer> region) {
     region.put(RANDOM.nextInt(MAX_KEY), RANDOM.nextInt());
+    puts++;
   }
 
   private static List<Consumer<Region<Integer, Integer>>> operations() {

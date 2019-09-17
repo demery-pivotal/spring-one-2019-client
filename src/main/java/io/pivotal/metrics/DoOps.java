@@ -21,7 +21,7 @@ public class DoOps {
   private static final String REPLICATE_REGION_NAME = "my-replicate-region";
   private static final String PARTITIONED_REGION_NAME = "my-partitioned-region";
   private static final int MAX_SLEEP_MILLIS = 1000;
-  private static final int MAX_KEY = 100_000;
+  private static final int MAX_KEY = 300_000;
   private static int puts;
   private static int gets;
 
